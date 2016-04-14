@@ -1,61 +1,117 @@
-> Note：This Tutorial is written based on DJI Android SDK v2.4, since the current [DJI Android SDK Sample Project](https://github.com/dji-sdk/Mobile-SDK-Android) only supports Android Studio, this tutorial is no longer useful now.
+# Importing DJI Android SDK to Android Studio Project
 
-# Importing DJI SDK Demo to Android Studio
-
-<!-- toc -->
-
-*If you come across any mistakes or bugs in this tutorial, please let us know using a Github issue, a post on the DJI forum, or commenting in the Gitbook. Please feel free to send us Github pull request and help us fix any issues. However, all pull requests related to document must follow the [document style](https://github.com/dji-sdk/Mobile-SDK-Tutorial/issues/19)*
+*If you come across any mistakes or bugs in this tutorial, please let us know using a Github issue, a post on the DJI forum. Please feel free to send us Github pull request and help us fix any issues. However, all pull requests related to document must follow the [document style](https://github.com/dji-sdk/Mobile-SDK-Tutorial/issues/19)*
 
 ---
 
-There are two methods we can use to import the DJI SDK Demo library into Android Studio. The first is to import the Android Studio version of the DJI SDK Demo Library to Android Studio; the second is to import the Eclipse version of the DJI SDK Demo into Android Studio.
+## Creating an Android Studio Project
 
-## Importing the Android Studio Version
+ Open Android Studio and select **Start a new Android Studio project** to create a new project.
 
-### 1. Downloading the DJI Android SDK
-Please download DJI Android SDK: <https://developer.dji.com/mobile-sdk/downloads>
+![createProject](./Images/createProject.png)   
+   
+ Then enter the **Application name** as "ImportSDKDemo". Next enter the **Company Domain** and **Package Name** you want and select the **Project location** path to store the project.
 
-Unzip the downloaded package. Find the **Android Studio** folder under the path "./V2.1.0/Android Studio".
+  Here we use "com.dji.importSDKDemo" for both Company Domain and Package name.
+  
+![enterProjectName](./Images/enterProjectName.png)
 
-### 2. Importing the Project
-
-There are two projects in the **Android Studio** folder: **DJI_SDK_Android_GetStart** and **DJI-SDK-Android-V2.1.0**. We will be using the **DJI-SDK-Android-V2.1.0** project.
-
-Open Android Studio and select **Open an existing Android Studio project**. A dialog window will pop-up, asking you to select the path of the project folder. Locate **./V2.1.0/Android Studio/DJI-SDK-Android-V2.1.0** and select it to import.
-
-![importAS](./Images/importAS.png)
-
- **Note:** If there is a pop-up window that reads "The path 'xxx' does not refer to an Android SDK. Android Studio will use its default SDK instead:'xxx' and will modify the project's local.properties file", please click "OK" and continue. This happens because the Android SDK path setting in the file **local.properties** needs to be revised to the path of Android SDK on your computer.
+> **Important:** The **Package Name** you enter here should be the same as the "Package Name" of the App Information you apply in DJI Developer Website. 
+> 
+> ![appKey](./Images/appKey.png)
+> 
+> For more details of applying for an DJI App, please check this link for details: <https://developer.dji.com/mobile-sdk/get-started/Register-Download/>
  
-![sdkPath](./Images/sdkPath.png)
+  Press "Next" button to continue and set the mimimum SDK version as `API 19: Android 4.4 (KitKat)` for "Phone and Tablet" and press Next. 
+  
+![minimumSDK](./Images/minimumSDK.png)
 
+  Then select "Empty Activity" and press Next. Lastly, leave the **Activity Name** as "MainActivity", and the **Layout Name** as "activity_main". Press "Finish" to create the project.
+  
+## Downloading and Importing Module to the Project
 
-## Importing the Eclipse version
+  You can download DJI Android SDK from [DJI Developer Website](https://developer.dji.com/mobile-sdk/downloads), 
 
-### 1. Downloading DJI Android SDK
-Please download DJI Android SDK: <https://developer.dji.com/mobile-sdk/downloads>
+  Unzip the Android SDK package, go to **File -> New -> Import Module** on the top bar of Android Studio. Then enter the "API Library" folder location of the downloaded Android SDK package in the **Source directory** field. A "dJISDKLib" name will show in the "Module name" field. Press Next and finish button to finish the settings.
+ 
+ ![importSDK](./Images/importsSDK.png)
 
-Unzip the downloaded package. Find the **Eclipse** folder under the path "./V2.1.0/Eclipse". 
+## Configurating the Gradle File
 
-### 2. Importing the project
+Double click on the "build.gradle(Module: app)" in the project navigator to open it:
 
-Open Android Studio, select **Import project(Eclipse ADT, Gradle,etc.)**. A dialog window will pop-up asking you to select the project path. Select the path "./V2.1.0/Eclipse/DJI-SDK-Android-V2.1.0" to import the DJI SDK Demo.
+![gradle](./Images/gradle.png)
 
-![importEclipseProject](./Images/importEclipseProject.png)
+Then replace the content with the following:
 
-Click "Next" for all the remaining dialogue boxes, the default values will be fine. After you click "Finish" on the last window, you will receive a pop-up window asking you to add dependency libraries. Just click "OK".
+~~~xml
+apply plugin: 'com.android.application'
 
-Please confirm that in your project's DJI-SDK-LIB's folder "libs", there are the following .so libs or jars:
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
-![neededLibs](./Images/neededLibs.png)
+    defaultConfig {
+        applicationId "com.dji.importSDKDemo"
+        minSdkVersion 19
+        targetSdkVersion 22  // 1
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
 
-If the "run" icon is grayed out, you will need your edit configurations. Click "Run->Edit Configurations...", then click the plus sign "+" and select Android Application. In the settings, change the "Target Device" to "USB device" and click "OK".
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile project(':dJISDKLIB')  // 2
+}
+~~~
 
-![7.png](./Images/7.png)
-![8.png](./Images/8.png)
+Here we modify two things:
 
-Your run icon should now be green. Click it to compile and install the demo on your Android device.
+1. Modify the "targetSdkVersion" to **22**, if you want to use the SDK in Android 6.0 Marshmallow, you must set this "targetSdkVersion" to **22** or lower.
 
-![compileAndRun](./Images/compileAndRun.png)
+2. Add `compile project(':dJISDKLIB')` at the end of "dependencies" part. This is where we configure the Android Studio Project dependencies.
 
+Then, select the **Tools -> Android -> Sync Project with Gradle Files** on the top bar of Android Studio and wait for Gradle project sync finish.
 
+Lastly, right click on the "app" module in the project navigator and click "Open Module Settings" to open the Project Struture window. 
+
+![openModulesSettings](./Images/openModulesSettings.png)
+
+Select "app" Modules and navigate to the "Dependencies" tab, you should find the "dJISDKLIB" appear in the list. Your SDK environmental setup should be ready now!
+
+![dependencies](./Images/dependencies.png)
+
+## Trying to use Android SDK in the Project
+
+Now, let's double click to open the MainActivity.java file in the `com.dji.importSDKDemo` package from the project navigator area.
+
+![mainActivity](./Images/mainActivity.png)
+
+Then add `import dji.sdk.SDKManager.DJISDKManager;` at the bottom of the import classes section as shown below:
+ 
+~~~java
+package com.dji.importSDKDemo;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import dji.sdk.SDKManager.DJISDKManager;
+~~~
+
+  Wait for a few seconds and check if the `import dji.sdk.SDKManager.DJISDKManager;` line turn red, if it remains gray color, it means that you import DJI Android SDK to your Android Studio project successfully. Here is the status you should see if everything goes well:
+  
+![checkSDK](./Images/checkSDK.png)
+
+  Congratulations, now you should be able to use DJI Android SDK in your Android Studio Project!
+  
+## Where to go from here?
+  
+  If you want to learn how to use DJI Android SDK to create a simple app, please check this tutorial: [**Creating a Camera Application**](https://github.com/DJI-Mobile-SDK/Android-FPVDemo). It’s our introductory tutorial, which guides you through connecting to your aircraft's camera to displaying a live video feed in your app, through which you can take photos and videos.
