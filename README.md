@@ -133,8 +133,6 @@ Then add the following elements code on top of the "application" element:
 ~~~xml
 <!-- Permissions and features -->
 <uses-sdk
-        android:minSdkVersion="19"
-        android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -197,8 +195,6 @@ Finally, once you finish all the configurations for AndroidManifest.xml file, yo
 
     <!-- Permissions and features -->
     <uses-sdk
-        android:minSdkVersion="19"
-        android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
