@@ -50,13 +50,11 @@ Then replace the content with the following:
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.dji.importSDKDemo"
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 22  // 1 <------------
         versionCode 1
         versionName "1.0"
     }
@@ -72,13 +70,15 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
-    compile project(':dJISDKLIB')  // 1 <------------
+    compile project(':dJISDKLIB')  // 2 <------------
 }
 ~~~
 
-Here we modify one thing:
+Here we modify two things:
 
-1. Add `compile project(':dJISDKLIB')` at the end of "dependencies" part. This is where we configure the Android Studio Project dependencies.
+1. In order to run our SDK on a Marshmallow device (6.0 and API 23), we need to set the compile and target SDK version to 23 and since we are not able to get the SDK based app(s) to consistently work on API 23 device, let us stay with API 22 and lower.
+
+2. Add `compile project(':dJISDKLIB')` at the end of "dependencies" part. This is where we configure the Android Studio Project dependencies.
 
 Then, select the **Tools -> Android -> Sync Project with Gradle Files** on the top bar of Android Studio and wait for Gradle project sync finish.
 

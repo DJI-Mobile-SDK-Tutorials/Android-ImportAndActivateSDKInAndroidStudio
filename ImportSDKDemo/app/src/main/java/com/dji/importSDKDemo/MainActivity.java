@@ -9,11 +9,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
-
 import dji.sdk.SDKManager.DJISDKManager;
 import dji.sdk.base.DJIBaseComponent;
 import dji.sdk.base.DJIBaseProduct;
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "register sdk fails, check if network is available", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "register sdk failed, check if network is available", Toast.LENGTH_LONG).show();
                     }
                 });
 
