@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.dji.importSDKDemo"
         minSdkVersion 19
-        targetSdkVersion 22  // 1 <------------
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -23,6 +23,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
-    compile project(':dJISDKLIB')  // 2 <------------
+    compile project(':dJISDKLIB')  // <------------
 
 }
