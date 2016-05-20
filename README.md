@@ -4,7 +4,7 @@
 
 ---
 
-In this tutorial, we will use the Android Studio's HelloWorld template project to show you how to import DJI Android SDK and register the application.
+In this tutorial, we will use the Android Studio's HelloWorld template project to show you how to import DJI Android SDK and register the application.   Throughout this tutorial we will be using Android Studio 2.1, which you can download from here: <http://developer.android.com/sdk/index.html>.
 
 ## Creating an Android Studio Project
 
@@ -454,7 +454,7 @@ Now let's build and run the project and install it to your Android device. If ev
 
 ![registerSuccess](./Images/registerSuccess.png)
 
-> **Important:** Please check if the "armeabi-v7a" lib folder has been added to your jnLibs folder in **dJISDKLib** successfully before testing resgistering the app. 
+> **Important:** Please check if the "armeabi-v7a", "arm64-v8a" and "x86" lib folders has been added to your jnLibs folder in **dJISDKLib** successfully before testing resgistering the app. 
 > 
 > ![armeabi](./Images/armeabi.png)
   
