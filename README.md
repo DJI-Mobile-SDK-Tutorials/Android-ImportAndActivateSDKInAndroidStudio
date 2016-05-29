@@ -128,7 +128,6 @@ Then add the following elements code on top of the "application" element:
 
 ~~~xml
 <!-- Permissions and features -->
-<uses-sdk
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -190,7 +189,6 @@ Finally, once you finish all the configurations for AndroidManifest.xml file, yo
     package="com.dji.importSDKDemo">
 
     <!-- Permissions and features -->
-    <uses-sdk
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
