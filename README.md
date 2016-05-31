@@ -70,6 +70,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'     //  <----------- if not having this, in the MainActivity.java will report 'can't resolve android.support.design.widget'
     compile project(':dJISDKLIB')  // <------------
 }
 ~~~
