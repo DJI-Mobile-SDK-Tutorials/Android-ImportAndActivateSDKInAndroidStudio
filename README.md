@@ -28,7 +28,11 @@ In this tutorial, we will use the Android Studio's HelloWorld template project t
   
 ![minimumSDK](./Images/minimumSDK.png)
 
-  Then select "Blank Activity" and press Next. Lastly, leave the **Activity Name** as "MainActivity", the **Layout Name** as "activity_main", the **Title** as "MainActivity", and the **Menu Resource Name** as "menu_main". Press "Finish" to create the project.
+  Then select "Basic Activity" and press Next. 
+  
+![basicActivity](./Images/basicActivity.png)
+  
+  Lastly, leave the **Activity Name** as "MainActivity", the **Layout Name** as "activity_main", the **Title** as "MainActivity", and the **Menu Resource Name** as "menu_main". Press "Finish" to create the project.
   
 ## Downloading and Importing Module to the Project
 
