@@ -54,6 +54,8 @@ Then replace the content with the following:
 apply plugin: 'com.android.application'
 
 android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.dji.importSDKDemo"
@@ -72,8 +74,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
     compile project(':dJISDKLIB')  // <------------
 }
 ~~~
