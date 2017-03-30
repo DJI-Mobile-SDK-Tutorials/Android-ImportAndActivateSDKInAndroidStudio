@@ -1,5 +1,7 @@
 # Android-ImportAndActivateSDKInAndroidStudio
 
+> **Note: This Sample Project is developed based on Android SDK v3.5.1, an update version for Android SDK v4.0 will be published soon.**
+
 ## Introduction
 
 This demo is designed for you to learn how to import and activate DJI SDK in your Android Studio project.
