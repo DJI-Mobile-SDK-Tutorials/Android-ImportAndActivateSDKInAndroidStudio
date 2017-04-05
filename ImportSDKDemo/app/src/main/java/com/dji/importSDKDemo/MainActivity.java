@@ -16,11 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import dji.sdk.sdkmanager.DJISDKManager;
-import dji.sdk.base.DJIBaseComponent;
-import dji.sdk.base.DJIBaseProduct;
+
 import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
+import dji.sdk.base.BaseComponent;
+import dji.sdk.base.BaseProduct;
+import dji.sdk.sdkmanager.DJISDKManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String FLAG_CONNECTION_CHANGE = "dji_sdk_connection_change";
 
-    private static DJIBaseProduct mProduct;
+    private static BaseProduct mProduct;
 
     private Handler mHandler;
 
@@ -65,16 +66,16 @@ public class MainActivity extends AppCompatActivity {
 
         //Initialize DJI SDK Manager
         mHandler = new Handler(Looper.getMainLooper());
-        DJISDKManager.getInstance().initSDKManager(this, mDJISDKManagerCallback);
+        DJISDKManager.getInstance().registerApp(this, mDJISDKManagerCallback);
     }
 
     /*
      *  Implement DJISDKManager Callback methods
      */
-    private DJISDKManager.DJISDKManagerCallback mDJISDKManagerCallback = new DJISDKManager.DJISDKManagerCallback() {
+    private DJISDKManager.SDKManagerCallback mDJISDKManagerCallback = new DJISDKManager.SDKManagerCallback() {
 
         @Override
-        public void onGetRegisteredResult(DJIError error) {
+        public void onRegister(DJIError error) {
             Log.d(TAG, error == null ? "success" : error.getDescription());
             if(error == DJISDKError.REGISTRATION_SUCCESS) {
                 DJISDKManager.getInstance().startConnectionToProduct();
@@ -101,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onProductChanged(DJIBaseProduct oldProduct, DJIBaseProduct newProduct) {
+        public void onProductChange(BaseProduct oldProduct, BaseProduct newProduct) {
 
             mProduct = newProduct;
             if(mProduct != null) {
-                mProduct.setDJIBaseProductListener(mDJIBaseProductListener);
+                mProduct.setBaseProductListener(mDJIBaseProductListener);
             }
 
             notifyStatusChange();
@@ -113,29 +114,29 @@ public class MainActivity extends AppCompatActivity {
     };
 
     /*
-     *  Implement DJIBaseProductListener methods
+     *  Implement BaseProductListener methods
      */
-    private DJIBaseProduct.DJIBaseProductListener mDJIBaseProductListener = new DJIBaseProduct.DJIBaseProductListener() {
+    private BaseProduct.BaseProductListener mDJIBaseProductListener = new BaseProduct.BaseProductListener() {
 
         @Override
-        public void onComponentChange(DJIBaseProduct.DJIComponentKey key, DJIBaseComponent oldComponent, DJIBaseComponent newComponent) {
+        public void onComponentChange(BaseProduct.ComponentKey key, BaseComponent oldComponent, BaseComponent newComponent) {
             if(newComponent != null) {
-                newComponent.setDJIComponentListener(mDJIComponentListener);
+                newComponent.setComponentListener(mDJIComponentListener);
             }
             notifyStatusChange();
         }
 
         @Override
-        public void onProductConnectivityChanged(boolean isConnected) {
+        public void onConnectivityChange(boolean isConnected) {
             notifyStatusChange();
         }
 
     };
 
-    private DJIBaseComponent.DJIComponentListener mDJIComponentListener = new DJIBaseComponent.DJIComponentListener() {
+    private BaseComponent.ComponentListener mDJIComponentListener = new BaseComponent.ComponentListener() {
 
         @Override
-        public void onComponentConnectivityChanged(boolean isConnected) {
+        public void onConnectivityChange(boolean isConnected) {
             notifyStatusChange();
         }
 
