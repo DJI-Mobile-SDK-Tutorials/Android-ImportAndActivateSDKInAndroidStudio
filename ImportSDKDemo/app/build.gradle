@@ -5,6 +5,10 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
+
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
         applicationId "com.dji.importSDKDemo"
         minSdkVersion 19
         targetSdkVersion 23
