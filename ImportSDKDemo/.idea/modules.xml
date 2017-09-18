@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ImportSDKDemo.iml" filepath="$PROJECT_DIR$/ImportSDKDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dji_android_sdk/dji_android_sdk.iml" filepath="$PROJECT_DIR$/dji_android_sdk/dji_android_sdk.iml" />
     </modules>
   </component>
 </project>
