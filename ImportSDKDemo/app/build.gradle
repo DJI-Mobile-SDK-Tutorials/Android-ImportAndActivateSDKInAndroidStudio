@@ -29,7 +29,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile 'com.dji:dji-sdk:4.3.0' //This line will import the DJI SDK Maven dependency.
+    compile 'com.dji:dji-sdk:4.3.2' //This line will import the DJI SDK Maven dependency.
     compile 'com.android.support:multidex:1.0.1'
 
 }

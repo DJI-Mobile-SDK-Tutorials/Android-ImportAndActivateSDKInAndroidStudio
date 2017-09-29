@@ -8,7 +8,7 @@ This demo is designed for you to learn how to import and activate DJI SDK in you
 
  - Android Studio 2.0+
  - Android System 4.1+
- - DJI Android SDK 4.3
+ - DJI Android SDK 4.3.2
 
 ## Tutorial
 
