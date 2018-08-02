@@ -160,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                             }
-                            notifyStatusChange();
                             Log.d(TAG,
                                     String.format("onComponentChange key:%s, oldComponent:%s, newComponent:%s",
                                             componentKey,
