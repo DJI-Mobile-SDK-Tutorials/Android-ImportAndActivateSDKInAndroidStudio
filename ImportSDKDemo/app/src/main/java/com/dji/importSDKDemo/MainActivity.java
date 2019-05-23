@@ -23,6 +23,7 @@ import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
 import dji.sdk.base.BaseComponent;
 import dji.sdk.base.BaseProduct;
+import dji.sdk.sdkmanager.DJISDKInitEvent;
 import dji.sdk.sdkmanager.DJISDKManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     showToast("registering, pls wait...");
+
                     DJISDKManager.getInstance().registerApp(MainActivity.this.getApplicationContext(), new DJISDKManager.SDKManagerCallback() {
                         @Override
                         public void onRegister(DJIError djiError) {
@@ -165,6 +167,11 @@ public class MainActivity extends AppCompatActivity {
                                             componentKey,
                                             oldComponent,
                                             newComponent));
+
+                        }
+
+                        @Override
+                        public void onInitProcess(DJISDKInitEvent djisdkInitEvent, int i) {
 
                         }
 
