@@ -149,6 +149,12 @@ public class MainActivity extends AppCompatActivity {
                             notifyStatusChange();
 
                         }
+
+                        @Override
+                        public void onProductChanged(BaseProduct baseProduct) {
+
+                        }
+
                         @Override
                         public void onComponentChange(BaseProduct.ComponentKey componentKey, BaseComponent oldComponent,
                                                       BaseComponent newComponent) {
